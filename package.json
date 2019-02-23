@@ -1,0 +1,14 @@
+{
+  "name": "auto-api",
+  "version": "1.0.0",
+  "description": "powershell core api gateway project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "devdependencies": {
+    "serverless": "^1.38.0"
+  }
+}
