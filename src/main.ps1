@@ -1,6 +1,8 @@
+#Requires -Modules @{ ModuleName='PS-AutoApi'; ModuleVersion='1.0' }
+
 try{
-    Import-Module ./WebApi/WebApi.psm1
-    # Import-Module .src/WebApi/WebApi.psm1
+    Import-Module PS-AutoApi
+
     Write-Host "Debug Log:"
     Write-Host "Debug Log:LambdaInput=$($LambdaInput | out-string)"
     Write-Host "Debug Log:LambdaInput.PATH=$($LambdaInput.Path)"

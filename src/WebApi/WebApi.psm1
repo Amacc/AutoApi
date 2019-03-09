@@ -1,1 +1,0 @@
-. $PSScriptRoot\WebApi.ps1
