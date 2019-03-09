@@ -14,4 +14,4 @@ jobs:
 
       - run:
           name: Print the Current Time
-          command: pwsh "Get-Date"
+          command: pwsh -File .\tools\compile.ps1
