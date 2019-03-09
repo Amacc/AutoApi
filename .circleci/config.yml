@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: microsoft/powershell
-      - entrypoint: "pwsh"
+        entrypoint: pwsh
 
     steps:
       - checkout
