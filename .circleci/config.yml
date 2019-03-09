@@ -1,0 +1,16 @@
+version: 2
+jobs:
+  deploy:
+    docker:
+      - image: microsoft/powershell
+
+    steps:
+      - checkout
+
+      - run:
+          name: Greeting
+          command: echo Hello, world.
+
+      - run:
+          name: Print the Current Time
+          command: Get-Date
