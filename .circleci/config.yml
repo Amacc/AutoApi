@@ -14,4 +14,4 @@ jobs:
 
       - run:
           name: Print the Current Time
-          command: Get-Date
+          command: pwsh "Get-Date"
