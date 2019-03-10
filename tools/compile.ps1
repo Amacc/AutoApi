@@ -2,7 +2,7 @@
 Install-Module PS-AutoApi -Force
 Import-Module PS-AutoApi
 
-$PSScriptRoot\setup.j2.ps1
+$PSScriptRoot/setup.j2.ps1
 
 Clear-Routes
 
