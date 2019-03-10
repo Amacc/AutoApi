@@ -11,6 +11,7 @@ begin{
     . $PSScriptRoot\utils.ps1
 
     Write-Host (Get-Content build/serverless.yml -Raw)
+    Write-Host (Get-ChildItem build)
 
     $stackName = (Get-Content -raw package.json |
         ConvertFrom-Json).name
@@ -45,8 +46,5 @@ end{
             --stack-name $stackName `
             --capabilities CAPABILITY_IAM
     }
-    If($Error.Count -gt 0){
-        Write-Host $Error
-        Exit 1
-    }
+    If($Error.Count -gt 0){ Exit 1 }
 }
