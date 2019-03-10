@@ -10,9 +10,9 @@ jobs:
       - checkout
 
       - run:
-          name: Greeting
-          command: echo Hello, world.
+          name: Compile serverless.yml
+          command: pwsh -File tools/compile.ps1
 
       - run:
-          name: Compile and Deploy
-          command: pwsh -File tools/compile.ps1
+          name: Deploy to AWS
+          command: pwsh -File tools/deploy.ps1
