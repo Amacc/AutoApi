@@ -21,7 +21,7 @@ Resources:
             Path: {{ route.Route }}
             Method: GET
         {%- endfor %}
-        proxy:
+        proxy:  # Needed for permissions workaround
           Type: Api
           Properties:
             Path: "/{proxy+}"
