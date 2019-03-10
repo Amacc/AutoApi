@@ -1,3 +1,4 @@
+#Requires -Modules @{ ModuleName='AWSLambdaPSCore'; ModuleVersion='1.2.0.0' }
 [cmdletbinding()]param(
     [switch]$BuildOnly,
     [switch]$SkipPackageStep,
@@ -40,3 +41,4 @@ end{
             --capabilities CAPABILITY_IAM
     }
 }
+If($Error.Count -gt 0){ Exit 1 }
