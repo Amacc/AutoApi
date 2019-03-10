@@ -11,3 +11,6 @@ Write-Host "Importing Paths"
 @{ Routes= Get-RegisteredRoutes} |
     ConvertTo-Json |
     j2 --format=json serverless-template.yml -o build/serverless.yml
+
+
+If($Error.Count -gt 0){ Exit 1 }
