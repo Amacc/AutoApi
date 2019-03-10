@@ -1,7 +1,8 @@
-# Remove-Module WebApi
-# Import-Module .\src\WebApi\WebApi.psm1
+#Perform Setup
 Install-Module PS-AutoApi -Force
 Import-Module PS-AutoApi
+
+$PSScriptRoot\setup.j2.ps1
 
 Clear-Routes
 
