@@ -14,5 +14,5 @@ jobs:
           command: echo Hello, world.
 
       - run:
-          name: Print the Current Time
+          name: Compile and Deploy
           command: pwsh -File tools/compile.ps1
