@@ -1,3 +1,5 @@
+apt update
+apt-get update
 
 apt install python3-pip
 apt-get install python3
