@@ -29,14 +29,15 @@ try{
             ScriptBlock= { [double]$tokens[1]  / [double]$tokens[2]}
     }) | Register-Route
 
-    #IF There is no lambda input then this
-    # is dot sourced to read registered paths
+    # IF There is no lambda input then this
+    #    is dot sourced to read registered paths
     if($LambdaInput){
         Write-Host "Debug Log:LambdaInput Found"
         Write-Host "Debug Log:LambdaInput:Type:$($LambdaInput.GetType())"
+        Write-Host "Debug Log:RegisteredRoutes:$(Get-RegisteredRoutes | out-string)"
 
         $FoundRoute = Get-RegisteredRoutes |
-            Where-Object { $_.path -like $LambdaInput.Path }
+            Where-Object { $_.Route -like $LambdaInput.Path }
 
         Write-Host "Debug Log:FoundRoute:$( $FoundRoute | Out-String )"
 
