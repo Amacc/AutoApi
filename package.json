@@ -10,5 +10,11 @@
   "license": "MIT",
   "devdependencies": {
     "serverless": "^1.38.0"
+  },
+  "autoapi":{
+    "includes":[
+      "WebApi"
+    ],
+    "bucket":"auto.api"
   }
 }

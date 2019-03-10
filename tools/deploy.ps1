@@ -12,13 +12,10 @@ begin{
 
     Write-Host (Get-Content build/serverless.yml -Raw)
     Write-Host (Get-ChildItem build)
-
-    $stackName = (Get-Content -raw package.json |
-        ConvertFrom-Json).name
-    $bucketName = "auto.api"
-    $Dependencies = @(
-        "WebApi"
-    )
+    $package = Get-Content -raw package.json | ConvertFrom-Json
+    $stackName = $package.name
+    $bucketName = $package.autoapi.$bucket
+    $Dependencies = $package.autoapi.includes
 }
 end{
     Write-Host "Deploying $stackName"
