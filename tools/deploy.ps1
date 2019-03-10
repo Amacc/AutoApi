@@ -8,14 +8,14 @@ begin{
     Install-Module AWSLambdaPSCore -Force
     Import-Module AWSLambdaPSCore
 
-    . $PSScriptRoot\utils.ps1
-
     Write-Host (Get-Content build/serverless.yml -Raw)
     Write-Host (Get-ChildItem build)
     $package = Get-Content -raw package.json | ConvertFrom-Json
     $stackName = $package.name
-    $bucketName = $package.autoapi.$bucket
+    $bucketName = $package.autoapi.bucket
     $Dependencies = $package.autoapi.includes
+    Write-Verbose "Package:$package"
+    Write-Verbose "BucketName:$bucketName"
 }
 end{
     Write-Host "Deploying $stackName"
