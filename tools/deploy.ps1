@@ -5,7 +5,7 @@
     $MainScript
 )
 begin{
-    . $PSScriptRoot\tools\utils.ps1
+    . $PSScriptRoot\utils.ps1
     $stackName = (Get-Content -raw package.json |
         ConvertFrom-Json).name
     $bucketName = "auto.api"
