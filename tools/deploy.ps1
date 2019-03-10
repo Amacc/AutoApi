@@ -41,5 +41,5 @@ end{
             --stack-name $stackName `
             --capabilities CAPABILITY_IAM
     }
+    If($Error.Count -gt 0){ Exit 1 }
 }
-If($Error.Count -gt 0){ Exit 1 }
