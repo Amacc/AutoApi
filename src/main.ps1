@@ -1,17 +1,24 @@
-#Requires -Modules @{ ModuleName='PS-AutoApi'; ModuleVersion='1.0' }
+#Requires -Modules @{ ModuleName='PS-AutoApi'; ModuleVersion='1.0.11' }
 
 try{
     Import-Module PS-AutoApi
 
-    Write-Host "Debug Log:"
     Write-Host "Debug Log:LambdaInput=$($LambdaInput | out-string)"
     Write-Host "Debug Log:LambdaInput.PATH=$($LambdaInput.Path)"
-
+    $RegisteredRoutes = Get-RegisteredRoutes
+    if ($RegisteredRoutes.Length -eq 0){
+        Write-Host "No Registered Routes"
+    }
     @(
         [PSCustomObject]@{
             Name="add"
             Route ="add/{first}/{second}"
-            ScriptBlock= { [double]$tokens[1]  + [double]$tokens[2] }
+            ScriptBlock = {
+                param($first,$second)
+                Write-Host "First:$First"
+                Write-Host "Second:$Second"
+                return [double]$first + [double]$second
+            }
         },
         [PSCustomObject]@{
             Route ="sub/{first}/{second}"
@@ -34,18 +41,17 @@ try{
     if($LambdaInput){
         Write-Host "Debug Log:LambdaInput Found"
         Write-Host "Debug Log:LambdaInput:Type:$($LambdaInput.GetType())"
-        Write-Host "Debug Log:RegisteredRoutes:$(Get-RegisteredRoutes | out-string)"
+        Write-Host "Debug Log:RegisteredRoutes:$(Get-RegisteredRoutes)"
+        Write-Host "$(Get-RegisteredRoutes)"
 
         $FoundRoute = Get-RegisteredRoutes |
-            Where-Object { $_.Route -like $LambdaInput.Path }
+            Where-Object { $_.Route -like $LambdaInput.resource  }
 
         Write-Host "Debug Log:FoundRoute:$( $FoundRoute | Out-String )"
 
         return @{
             'statusCode' = 200;
-            'body' = [PSCustomObject]$LambdaInput |
-                Invoke-Path |
-                Out-String
+            'body' = $LambdaInput | Invoke-Path | Out-String
                 # ConvertTo-Json
             'headers' = @{'Content-Type' = 'text/plain'}
             # 'headers' = @{'Content-Type' = 'application/json'}
