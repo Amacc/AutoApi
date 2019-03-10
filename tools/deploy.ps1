@@ -7,7 +7,10 @@
 begin{
     Install-Module AWSLambdaPSCore -Force
     Import-Module AWSLambdaPSCore
+
     . $PSScriptRoot\utils.ps1
+    . $PSScriptRoot\install_deps.ps1
+
     $stackName = (Get-Content -raw package.json |
         ConvertFrom-Json).name
     $bucketName = "auto.api"
