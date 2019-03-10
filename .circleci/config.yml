@@ -2,8 +2,8 @@ version: 2
 jobs:
   build:
     docker:
-      - image: microsoft/powershell # ?? does it have python????
-      # - image: amacc/powershell-python
+      # - image: microsoft/powershell # ?? does it have python????
+      - image: amacc/powershell-python
         entrypoint: pwsh
 
     steps:
