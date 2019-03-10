@@ -1,5 +1,7 @@
 # Remove-Module WebApi
 # Import-Module .\src\WebApi\WebApi.psm1
+Install-Module PS-AutoApi
+Import-Module PS-AutoApi
 
 Clear-Routes
 
