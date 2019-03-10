@@ -29,14 +29,18 @@ try{
             ScriptBlock= { [double]$tokens[1]  / [double]$tokens[2]}
     }) | Register-Route
 
-    return @{
-        'statusCode' = 200;
-        'body' = [PSCustomObject]$LambdaInput |
-            Invoke-Path |
-            Out-String
-            # ConvertTo-Json
-        'headers' = @{'Content-Type' = 'text/plain'}
-        # 'headers' = @{'Content-Type' = 'application/json'}
+    #IF There is no lambda input then this
+    # is dot sourced to read registered paths
+    if($LambdaInput){
+        return @{
+            'statusCode' = 200;
+            'body' = [PSCustomObject]$LambdaInput |
+                Invoke-Path |
+                Out-String
+                # ConvertTo-Json
+            'headers' = @{'Content-Type' = 'text/plain'}
+            # 'headers' = @{'Content-Type' = 'application/json'}
+        }
     }
 }
 catch {
