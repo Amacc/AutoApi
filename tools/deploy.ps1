@@ -1,4 +1,3 @@
-#Requires -Modules @{ ModuleName='AWSLambdaPSCore'; ModuleVersion='1.2.0.0' }
 [cmdletbinding()]param(
     [switch]$BuildOnly,
     [switch]$SkipPackageStep,
@@ -6,6 +5,8 @@
     $MainScript
 )
 begin{
+    Install-Module AWSLambdaPSCore -Force
+    Import-Module AWSLambdaPSCore
     . $PSScriptRoot\utils.ps1
     $stackName = (Get-Content -raw package.json |
         ConvertFrom-Json).name
