@@ -9,29 +9,37 @@ try{
 
     @(
         [PSCustomObject]@{
-            Name="Add"
+            Name="add"
             Route ="add/{first}/{second}"
             ScriptBlock= { [double]$tokens[1]  + [double]$tokens[2] }
         },
         [PSCustomObject]@{
             Route ="sub/{first}/{second}"
-            Name="Sub"
+            Name="sub"
             ScriptBlock= { [double]$tokens[1]  - [double]$tokens[2] }
         },
         [PSCustomObject]@{
             Route ="mul/{first}/{second}"
-            Name="Mul"
+            Name="mul"
             ScriptBlock= { [double]$tokens[1]  * [double]$tokens[2]}
         },
         [PSCustomObject]@{
             Route ="div/{first}/{second}"
-            Name="Div"
+            Name="div"
             ScriptBlock= { [double]$tokens[1]  / [double]$tokens[2]}
     }) | Register-Route
 
     #IF There is no lambda input then this
     # is dot sourced to read registered paths
     if($LambdaInput){
+        Write-Host "Debug Log:LambdaInput Found"
+        Write-Host "Debug Log:LambdaInput:Type:$($LambdaInput.GetType())"
+
+        $FoundRoute = Get-RegisteredRoutes |
+            Where-Object { $_.path -like $LambdaInput.Path }
+
+        Write-Host "Debug Log:FoundRoute:$( $FoundRoute | Out-String )"
+
         return @{
             'statusCode' = 200;
             'body' = [PSCustomObject]$LambdaInput |

@@ -7,20 +7,25 @@ Resources:
     Properties:
       Handler: "main::main.Bootstrap::ExecuteFunction"
       Runtime: "dotnetcore2.1"
-      CodeUri: "build/auto-api.zip"
+      CodeUri: "auto-api.zip"
       MemorySize: 512
       Timeout: 30
       Role: null
       Policies:
         - "AWSLambdaBasicExecutionRole"
       Events:
-        {% for route in Routes %}
-        {{- route.Name }}:
-          Type: "Api"
+        {%- for route in Routes %}
+        {{ route.Name }}:
+          Type: Api
           Properties:
             Path: {{ route.Route }}
-            Method: Get
-        {% endfor %}
+            Method: GET
+        {%- endfor %}
+        http:
+          Type: Api
+          Properties:
+            Path: "/{proxy+}"
+            Method: GET
 
 Outputs :
   ApiURL :
