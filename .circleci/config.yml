@@ -2,7 +2,8 @@ version: 2
 jobs:
   build:
     docker:
-      - image: microsoft/powershell
+      # - image: microsoft/powershell # Testing custom container
+      - image: amacc/powershell-python
         entrypoint: pwsh
 
     steps:
